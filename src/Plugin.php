@@ -16,10 +16,31 @@ declare(strict_types=1);
 namespace MeCms\DatabaseBackup;
 
 use Cake\Core\BasePlugin;
+use Cake\Core\PluginApplicationInterface;
 
 /**
  * Plugin class
  */
 class Plugin extends BasePlugin
 {
+    /**
+     * Load all the application configuration and bootstrap logic
+     * @param \Cake\Core\PluginApplicationInterface $app The host application
+     * @return void
+     * @uses isCli()
+     */
+    public function bootstrap(PluginApplicationInterface $app): void
+    {
+        foreach ([
+            'MeCms',
+        ] as $plugin) {
+            $className = sprintf('%s\Plugin', $plugin);
+            $plugin = new $className();
+            $plugin->bootstrap($app);
+            $plugin->disable('bootstrap');
+            $app->addPlugin($plugin);
+        }
+
+        parent::bootstrap($app);
+    }
 }

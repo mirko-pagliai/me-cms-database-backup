@@ -1,0 +1,86 @@
+# LANGUAGE translation of me-cms-database-backup
+# Copyright Mirko Pagliai <mirko.pagliai@gmail.com>
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"POT-Creation-Date: 2021-10-12 15:49+0000\n"
+"PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
+"Last-Translator: NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+#: ./Form/BackupForm.php:51
+#: ./Admin/Backups/add.php:23
+msgid "Valid extensions: {0}"
+msgstr ""
+
+#: ./View/Helper/MenuHelper.php:58
+msgid "List backups"
+msgstr ""
+
+#: ./View/Helper/MenuHelper.php:59
+#: ./Admin/Backups/add.php:16
+msgid "Add backup"
+msgstr ""
+
+#: ./View/Helper/MenuHelper.php:61
+msgid "Backups"
+msgstr ""
+
+#: ./Admin/Backups/add.php:33
+msgid "Pattern"
+msgstr ""
+
+#: ./Admin/Backups/add.php:40
+msgid "Database name"
+msgstr ""
+
+#: ./Admin/Backups/add.php:45
+msgid "Datetime. This is the equivalent of {0}"
+msgstr ""
+
+#: ./Admin/Backups/add.php:50
+msgid "Database hostname"
+msgstr ""
+
+#: ./Admin/Backups/add.php:55
+msgid "Timestamp. This is the equivalent of {0}"
+msgstr ""
+
+#: ./Admin/Backups/index.php:16
+msgid "Database backups"
+msgstr ""
+
+#: ./Admin/Backups/index.php:24
+msgid "Delete all"
+msgstr ""
+
+#: ./Admin/Backups/index.php:34
+msgid "Extension"
+msgstr ""
+
+#: ./Admin/Backups/index.php:35
+msgid "Compression"
+msgstr ""
+
+#: ./Admin/Backups/index.php:36
+msgid "Size"
+msgstr ""
+
+#: ./Admin/Backups/index.php:54
+msgid "Restore"
+msgstr ""
+
+#: ./Admin/Backups/index.php:56
+msgid "This will overwrite the current database and some data may be lost. Are you sure?"
+msgstr ""
+
+#: ./Admin/Backups/index.php:61
+msgid "The backup file will be sent by mail. Are you sure?"
+msgstr ""
+

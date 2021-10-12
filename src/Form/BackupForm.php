@@ -48,7 +48,7 @@ class BackupForm extends Form
                 'rule' => ['maxLength', 255],
             ],
             'extension' => [
-                'message' => __d('me_cms', 'Valid extensions: {0}', 'sql, sql.gz, sql.bz2'),
+                'message' => __d('me_cms_database_backup', 'Valid extensions: {0}', 'sql, sql.gz, sql.bz2'),
                 'rule' => ['custom', '/[^\.]\.sql(\.(bz2|gz))?$/'],
             ],
         ])->requirePresence('filename');

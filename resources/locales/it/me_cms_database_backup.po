@@ -1,0 +1,90 @@
+# LANGUAGE translation of me-cms-database-backup
+# Copyright Mirko Pagliai <mirko.pagliai@gmail.com>
+#
+msgid ""
+msgstr ""
+"POT-Creation-Date: 2021-10-12 15:49+0000\n"
+"PO-Revision-Date: 2021-10-12 17:51+0100\n"
+"Last-Translator: Mirko Pagliai <mirko.pagliai@gmail.com>\n"
+"Language-Team: Italian <>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: it\n"
+
+#: ./Form/BackupForm.php:51
+#: ./Admin/Backups/add.php:23
+msgid "Valid extensions: {0}"
+msgstr "Estensioni valide: {0}"
+
+#: ./View/Helper/MenuHelper.php:58
+msgid "List backups"
+msgstr "Elenca backup"
+
+#: ./View/Helper/MenuHelper.php:59
+#: ./Admin/Backups/add.php:16
+msgid "Add backup"
+msgstr "Aggiungi backup"
+
+#: ./View/Helper/MenuHelper.php:61
+msgid "Backups"
+msgstr "Backup"
+
+#: ./Admin/Backups/add.php:33
+msgid "Pattern"
+msgstr "Pattern"
+
+#: ./Admin/Backups/add.php:40
+msgid "Database name"
+msgstr "Nome del database"
+
+#: ./Admin/Backups/add.php:45
+msgid "Datetime. This is the equivalent of {0}"
+msgstr "Datetime. Questo è l'equivalente di {0}"
+
+#: ./Admin/Backups/add.php:50
+msgid "Database hostname"
+msgstr "Hostname del database"
+
+#: ./Admin/Backups/add.php:55
+msgid "Timestamp. This is the equivalent of {0}"
+msgstr "Timestamp. Questo è l'equivalente di {0}"
+
+#: ./Admin/Backups/index.php:16
+msgid "Database backups"
+msgstr "Backup del database"
+
+#: ./Admin/Backups/index.php:24
+msgid "Delete all"
+msgstr "Cancella tutti"
+
+#: ./Admin/Backups/index.php:34
+msgid "Extension"
+msgstr "Estensione"
+
+#: ./Admin/Backups/index.php:35
+msgid "Compression"
+msgstr "Compressione"
+
+#: ./Admin/Backups/index.php:36
+msgid "Size"
+msgstr "Dimensione"
+
+#: ./Admin/Backups/index.php:54
+msgid "Restore"
+msgstr "Ripristina"
+
+#: ./Admin/Backups/index.php:56
+msgid ""
+"This will overwrite the current database and some data may be lost. Are you"
+" sure?"
+msgstr ""
+"Questo sovrascriverà il database corrente e alcuni dati potrebbero andare "
+"persi. Sei sicuro?"
+
+#: ./Admin/Backups/index.php:61
+msgid "The backup file will be sent by mail. Are you sure?"
+msgstr "Il file di backup sarà inviato tramite mail. Sei sicuro?"
+
+
