@@ -1,0 +1,57 @@
+{
+    "name": "mirko-pagliai/me-cms-database-backup",
+    "description": "Database Backup plugin for MeCms",
+    "homepage": "https://github.com/mirko-pagliai/me-cms-database-backup",
+    "type": "cakephp-plugin",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Mirko Pagliai",
+            "email": "mirko.pagliai@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.2",
+        "mirko-pagliai/cakephp-database-backup": "^2.8.3",
+        "mirko-pagliai/me-cms": "dev-develop-ci-actions-no-database-backup as 2.30.3"
+    },
+    "require-dev": {
+        "cakephp/cakephp-codesniffer": "^4.0",
+        "phpunit/phpunit": "^8.5.12|^9.0|^9.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "MeCms\\DatabaseBackup\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "MeCms\\DatabaseBackup\\Test\\": "tests",
+            "App\\": "tests/test_app/TestApp"
+        }
+    },
+    "scripts": {
+        "i18n-extract": "bin/cake i18n extract --paths config,src,templates --relative-paths --overwrite -q",
+        "check": [
+            "@cs-check",
+            "@update-lowest",
+            "@test",
+            "@composer update",
+            "@test",
+            "@stan"
+        ],
+        "cs-check": "phpcs --standard=phpcs.xml.dist",
+        "cs-fix": "phpcbf --standard=phpcs.xml.dist",
+        "test": "rm -f -r /tmp/cake* && phpunit",
+        "coverage": "XDEBUG_MODE=coverage phpunit --coverage-html=coverage",
+        "phpstan": "phpstan.phar analyse",
+        "psalm": "psalm.phar",
+        "stan": [
+            "@stan-setup",
+            "@phpstan",
+            "@psalm"
+        ],
+        "stan-setup": "cp composer.json composer.backup && composer require --dev phpstan/phpstan:^0.12 psalm/phar:^3.18 && mv composer.backup composer.json",
+        "update-lowest": "@composer update --prefer-lowest"
+    }
+}

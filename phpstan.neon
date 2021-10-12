@@ -1,0 +1,23 @@
+includes:
+    - phpstan-baseline.neon
+
+parameters:
+    level: 7
+
+    paths:
+        - config
+        - src
+        - templates
+        - tests
+
+    bootstrapFiles:
+        - tests/bootstrap.php
+        - vendor/mirko-pagliai/cakephp-thumber/config/bootstrap.php
+        - vendor/mirko-pagliai/me-cms/config/bootstrap.php
+
+    checkGenericClassInNonGenericObjectType: false
+    checkMissingIterableValueType: false
+    treatPhpDocTypesAsCertain: false
+
+    excludes_analyse:
+        - tests/test_app/

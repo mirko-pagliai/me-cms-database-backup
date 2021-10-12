@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<psalm
+    errorLevel="4"
+    resolveFromConfigFile="true"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="https://getpsalm.org/schema/config"
+    xsi:schemaLocation="https://getpsalm.org/schema/config vendor/vimeo/psalm/config.xsd"
+    autoloader="tests/bootstrap.php"
+>
+    <projectFiles>
+        <directory name="config" />
+        <directory name="src" />
+        <directory name="templates" />
+        <directory name="tests" />
+        <ignoreFiles>
+            <directory name="tests/test_app" />
+            <directory name="vendor" />
+        </ignoreFiles>
+    </projectFiles>
+
+    <issueHandlers>
+        <InvalidScope>
+            <errorLevel type="suppress">
+                <directory name="templates" />
+            </errorLevel>
+        </InvalidScope>
+
+        <TooManyTemplateParams>
+            <errorLevel type="suppress">
+                <file name="src/Controller/Admin/BackupsController.php" />
+            </errorLevel>
+        </TooManyTemplateParams>
+
+        <UndefinedGlobalVariable>
+            <errorLevel type="suppress">
+                <directory name="templates" />
+            </errorLevel>
+        </UndefinedGlobalVariable>
+
+        <UndefinedMagicPropertyAssignment>
+            <errorLevel type="suppress">
+                <file name="tests/TestCase/Controller/Admin/BackupsControllerTest.php" />
+            </errorLevel>
+        </UndefinedMagicPropertyAssignment>
+
+        <UndefinedConstant errorLevel="suppress" />
+    </issueHandlers>
+</psalm>
