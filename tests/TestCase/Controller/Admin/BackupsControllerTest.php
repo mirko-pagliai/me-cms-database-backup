@@ -22,7 +22,7 @@ use Cake\Log\Log;
 use Cake\ORM\Entity;
 use DatabaseBackup\Utility\BackupImport;
 use DatabaseBackup\Utility\BackupManager;
-use MeCms\Form\BackupForm;
+use MeCms\DatabaseBackup\Form\BackupForm;
 use MeCms\TestSuite\ControllerTestCase;
 use Tools\Filesystem;
 
