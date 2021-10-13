@@ -18,6 +18,7 @@ namespace App;
 use Cake\Http\BaseApplication;
 use Cake\Http\MiddlewareQueue;
 use Cake\Routing\Middleware\RoutingMiddleware;
+use MeCms\Plugin as MeCms;
 use MeCms\DatabaseBackup\Plugin as MeCmsDatabaseBackup;
 
 /**
@@ -34,6 +35,7 @@ class Application extends BaseApplication
      */
     public function bootstrap(): void
     {
+        $this->addPlugin(MeCms::class);
         $this->addPlugin(MeCmsDatabaseBackup::class);
     }
 
