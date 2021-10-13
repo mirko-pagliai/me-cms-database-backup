@@ -15,8 +15,8 @@ declare(strict_types=1);
 
 namespace MeCms\DatabaseBackup;
 
-use Cake\Core\PluginApplicationInterface;
 use Cake\Core\BasePlugin;
+use Cake\Core\PluginApplicationInterface;
 use DatabaseBackup\Plugin as DatabaseBackup;
 
 /**
