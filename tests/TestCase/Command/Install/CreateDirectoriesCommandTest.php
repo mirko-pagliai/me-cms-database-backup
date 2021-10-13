@@ -14,8 +14,8 @@ declare(strict_types=1);
  */
 namespace MeCms\DatabaseBackup\Test\TestCase\Controller\Admin;
 
-use MeTools\TestSuite\ConsoleIntegrationTestTrait;
 use MeCms\TestSuite\TestCase;
+use MeTools\TestSuite\ConsoleIntegrationTestTrait;
 use Tools\Filesystem;
 
 /**
@@ -33,6 +33,6 @@ class CreateDirectoriesCommandTest extends TestCase
     {
         @mkdir(getConfigOrFail('DatabaseBackup.target'), 0755, true);
         $this->exec('me_tools.create_directories -v');
-        $this->assertOutputContains('File or directory `' . (new Filesystem())->rtr(getConfigOrFail('DatabaseBackup.target')) . '` already exists');
+        $this->assertOutputContains('File or directory `' . Filesystem::instance()->rtr(getConfigOrFail('DatabaseBackup.target')) . '` already exists');
     }
 }
