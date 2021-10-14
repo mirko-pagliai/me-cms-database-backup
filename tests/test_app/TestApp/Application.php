@@ -35,7 +35,6 @@ class Application extends BaseApplication
      */
     public function bootstrap(): void
     {
-        $this->addPlugin(MeCms::class);
         $this->addPlugin(MeCmsDatabaseBackup::class);
     }
 
