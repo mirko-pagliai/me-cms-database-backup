@@ -44,7 +44,7 @@ class BackupsControllerTest extends ControllerTestCase
     protected function createSingleBackup(string $extension = 'sql'): string
     {
         $file = getConfigOrFail('DatabaseBackup.target') . DS . 'backup.' . $extension;
-        (new Filesystem())->createFile($file);
+        Filesystem::instance()->createFile($file);
 
         return $file;
     }
@@ -66,7 +66,7 @@ class BackupsControllerTest extends ControllerTestCase
     {
         parent::tearDown();
 
-        (new Filesystem())->unlinkRecursive(getConfigOrFail('DatabaseBackup.target'), false, true);
+        Filesystem::instance()->unlinkRecursive(getConfigOrFail('DatabaseBackup.target'), false, true);
     }
 
     /**
