@@ -17,11 +17,11 @@ namespace MeCms\DatabaseBackup\Test\TestCase\Controller\Admin;
 
 use Cake\Cache\Cache;
 use Cake\Controller\Controller;
+use Cake\Core\Configure;
 use Cake\Event\EventInterface;
-use Cake\Log\Log;
 use Cake\ORM\Entity;
+use Cake\TestSuite\EmailTrait;
 use DatabaseBackup\Utility\BackupImport;
-use DatabaseBackup\Utility\BackupManager;
 use MeCms\DatabaseBackup\Form\BackupForm;
 use MeCms\TestSuite\ControllerTestCase;
 use Tools\Filesystem;
@@ -31,6 +31,8 @@ use Tools\Filesystem;
  */
 class BackupsControllerTest extends ControllerTestCase
 {
+    use EmailTrait;
+
     /**
      * @var \MeCms\DatabaseBackup\Controller\Admin\BackupsController
      */
@@ -82,19 +84,6 @@ class BackupsControllerTest extends ControllerTestCase
         $this->_controller->BackupImport = $this->getMockBuilder(BackupImport::class)
             ->setMethods(['import'])
             ->getMock();
-
-        //`BackupManager::send()` writes on logs instead of sending a real mail
-        $this->_controller->BackupManager = $this->getMockBuilder(BackupManager::class)
-            ->setMethods(['send'])
-            ->getMock();
-
-        $this->_controller->BackupManager->method('send')->will($this->returnCallback(function () {
-            Log::write('debug', 'Args for `send()`: ' . implode(', ', array_map(function ($arg) {
-                return '`' . $arg . '`';
-            }, func_get_args())));
-
-            return func_get_args();
-        }));
     }
 
     /**
@@ -212,6 +201,9 @@ class BackupsControllerTest extends ControllerTestCase
         $this->post($this->url + ['action' => 'send', urlencode(basename($file))]);
         $this->assertRedirect(['action' => 'index']);
         $this->assertFlashMessage(I18N_OPERATION_OK);
-        $this->assertLogContains('Args for `send()`: `' . $file . '`, `' . getConfigOrFail('MeCms.email.webmaster') . '`', 'debug');
+        $this->assertMailSentFrom(Configure::read('DatabaseBackup.mailSender'));
+        $this->assertMailSentTo(Configure::read('DatabaseBackup.mailSender'));
+        $this->assertMailSentWith('Database backup ' . basename($file) . ' from localhost', 'subject');
+        $this->assertMailContainsAttachment(basename($file), compact('file') + ['mimetype' => mime_content_type($file)]);
     }
 }

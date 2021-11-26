@@ -17,6 +17,8 @@ use Cake\Cache\Cache;
 use Cake\Core\Configure;
 use Cake\Datasource\ConnectionManager;
 use Cake\Log\Log;
+use Cake\Mailer\Email;
+use Cake\Mailer\TransportFactory;
 
 ini_set('intl.default_locale', 'en_US');
 date_default_timezone_set('UTC');
@@ -100,17 +102,14 @@ if (!getenv('db_dsn')) {
 }
 ConnectionManager::setConfig('test', ['url' => getenv('db_dsn')]);
 
-Log::setConfig('debug', [
-    'className' => 'File',
-    'path' => LOGS,
-    'levels' => ['notice', 'info', 'debug'],
-    'file' => 'debug',
-]);
 Log::setConfig('error', [
     'className' => 'File',
     'path' => LOGS,
     'file' => 'error',
     'levels' => ['warning', 'error', 'critical', 'alert', 'emergency'],
 ]);
+
+TransportFactory::setConfig('debug', ['className' => 'Debug']);
+Email::setConfig('default', ['transport' => 'debug', 'log' => true]);
 
 $_SERVER['PHP_SELF'] = '/';
