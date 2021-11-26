@@ -177,6 +177,7 @@ class BackupsControllerTest extends ControllerTestCase
 
     /**
      * Tests for `restore()` method
+     * @requires OS Linux
      * @test
      */
     public function testRestore(): void
@@ -191,6 +192,7 @@ class BackupsControllerTest extends ControllerTestCase
 
     /**
      * Tests for `send()` method
+     * @requires OS Linux
      * @test
      */
     public function testSend(): void
