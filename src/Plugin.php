@@ -16,10 +16,26 @@ declare(strict_types=1);
 namespace MeCms\DatabaseBackup;
 
 use Cake\Core\BasePlugin;
+use Cake\Core\PluginApplicationInterface;
+use DatabaseBackup\Plugin as DatabaseBackup;
 
 /**
  * Plugin class
  */
 class Plugin extends BasePlugin
 {
+    /**
+     * Load all the application configuration and bootstrap logic
+     * @param \Cake\Core\PluginApplicationInterface $app The host application
+     * @return void
+     */
+    public function bootstrap(PluginApplicationInterface $app): void
+    {
+        /** @var \Cake\Http\BaseApplication $app */
+        if (!$app->getPlugins()->has('DatabaseBackup')) {
+            $app->addPlugin(DatabaseBackup::class);
+        }
+
+        parent::bootstrap($app);
+    }
 }

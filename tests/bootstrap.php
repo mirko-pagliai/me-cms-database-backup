@@ -17,7 +17,8 @@ use Cake\Cache\Cache;
 use Cake\Core\Configure;
 use Cake\Datasource\ConnectionManager;
 use Cake\Log\Log;
-use EntityFileLog\Log\Engine\EntityFileLog;
+use Cake\Mailer\Email;
+use Cake\Mailer\TransportFactory;
 
 ini_set('intl.default_locale', 'en_US');
 date_default_timezone_set('UTC');
@@ -40,13 +41,17 @@ define('LOGS', TMP . 'log' . DS);
 define('SESSIONS', TMP . 'sessions' . DS);
 define('UPLOADED', WWW_ROOT . 'files' . DS);
 define('LOGIN_RECORDS', TMP . 'login' . DS);
-@mkdir(TMP);
-@mkdir(LOGS);
-@mkdir(SESSIONS);
-@mkdir(CACHE);
-@mkdir(CACHE . 'models');
-@mkdir(CACHE . 'persistent');
-@mkdir(CACHE . 'views');
+
+foreach ([
+    TMP,
+    LOGS,
+    SESSIONS,
+    CACHE . 'models',
+    CACHE . 'persistent',
+    CACHE . 'views',
+] as $dir) {
+    @mkdir($dir, 0777, true);
+}
 
 require_once dirname(__DIR__) . '/vendor/autoload.php';
 require_once CORE_PATH . 'config' . DS . 'bootstrap.php';
@@ -72,7 +77,7 @@ Configure::write('App', [
 Configure::write('Session', ['defaults' => 'php']);
 Configure::write('Assets.target', TMP . 'assets');
 Configure::write('DatabaseBackup', ['connection' => 'test', 'target' => TMP . 'backups']);
-Configure::write('pluginsToLoad', ['MeCms', 'MeCms/DatabaseBackup']);
+Configure::write('pluginsToLoad', ['Thumber/Cake', 'MeCms', 'MeCms/DatabaseBackup']);
 
 Cache::setConfig([
     '_cake_core_' => [
@@ -97,17 +102,14 @@ if (!getenv('db_dsn')) {
 }
 ConnectionManager::setConfig('test', ['url' => getenv('db_dsn')]);
 
-Log::setConfig('debug', [
-    'className' => 'File',
-    'path' => LOGS,
-    'levels' => ['notice', 'info', 'debug'],
-    'file' => 'debug',
-]);
 Log::setConfig('error', [
-    'className' => EntityFileLog::class,
+    'className' => 'File',
     'path' => LOGS,
     'file' => 'error',
     'levels' => ['warning', 'error', 'critical', 'alert', 'emergency'],
 ]);
+
+TransportFactory::setConfig('debug', ['className' => 'Debug']);
+Email::setConfig('default', ['transport' => 'debug', 'log' => true]);
 
 $_SERVER['PHP_SELF'] = '/';

@@ -30,3 +30,13 @@ parameters:
 			count: 13
 			path: templates/Admin/Backups/index.php
 
+		-
+			message: "#^Negated boolean expression is always false\\.$#"
+			count: 1
+			path: tests/TestCase/Form/BackupFormTest.php
+
+		-
+			message: "#^Ternary operator condition is always true\\.$#"
+			count: 1
+			path: tests/TestCase/Form/BackupFormTest.php
+
