@@ -13,14 +13,14 @@ declare(strict_types=1);
  * @license     https://opensource.org/licenses/mit-license.php MIT License
  */
 $this->extend('MeCms./common/form');
-$this->assign('title', $title = __d('me_cms_database_backup', 'Add backup'));
+$this->assign('title', $title = __d('me_cms/database_backup', 'Add backup'));
 ?>
 
 <?= $this->Form->create($backup); ?>
 <fieldset>
     <?= $this->Form->control('filename', [
         'default' => 'backup_{$DATABASE}_{$DATETIME}.sql.gz',
-        'help' => __d('me_cms_database_backup', 'Valid extensions: {0}', 'sql, sql.gz, sql.bz2'),
+        'help' => __d('me_cms/database_backup', 'Valid extensions: {0}', 'sql, sql.gz, sql.bz2'),
         'label' => I18N_FILENAME,
     ]) ?>
 </fieldset>
@@ -30,29 +30,29 @@ $this->assign('title', $title = __d('me_cms_database_backup', 'Add backup'));
 <table class="table mt-4">
     <thead>
         <tr>
-            <th><?= __d('me_cms_database_backup', 'Pattern') ?></th>
+            <th><?= __d('me_cms/database_backup', 'Pattern') ?></th>
             <th><?= I18N_DESCRIPTION ?></th>
         </tr>
     </thead>
     <tbody>
         <tr>
             <td><code>{$DATABASE}</code></td>
-            <td><?= __d('me_cms_database_backup', 'Database name') ?>.</td>
+            <td><?= __d('me_cms/database_backup', 'Database name') ?>.</td>
         </tr>
         <tr>
             <td><code>{$DATETIME}</code></td>
             <td>
-                <?= __d('me_cms_database_backup', 'Datetime. This is the equivalent of {0}', $this->Html->code('date(\'YmdHis\')')) ?>
+                <?= __d('me_cms/database_backup', 'Datetime. This is the equivalent of {0}', $this->Html->code('date(\'YmdHis\')')) ?>
             </td>
         </tr>
         <tr>
             <td><code>{$HOSTNAME}</code></td>
-            <td><?= __d('me_cms_database_backup', 'Database hostname') ?></td>
+            <td><?= __d('me_cms/database_backup', 'Database hostname') ?></td>
         </tr>
         <tr>
             <td><code>{$TIMESTAMP}</code></td>
             <td>
-                <?= __d('me_cms_database_backup', 'Timestamp. This is the equivalent of {0}', $this->Html->code('time()')) ?>
+                <?= __d('me_cms/database_backup', 'Timestamp. This is the equivalent of {0}', $this->Html->code('time()')) ?>
             </td>
         </tr>
     </tbody>
