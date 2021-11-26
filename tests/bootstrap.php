@@ -43,7 +43,7 @@ define('UPLOADED', WWW_ROOT . 'files' . DS);
 define('LOGIN_RECORDS', TMP . 'login' . DS);
 
 foreach ([
-    TMP . 'tests',
+    TMP,
     LOGS,
     SESSIONS,
     CACHE . 'models',
