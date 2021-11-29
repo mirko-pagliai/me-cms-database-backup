@@ -33,7 +33,9 @@ class Plugin extends BasePlugin
     {
         /** @var \Cake\Http\BaseApplication $app */
         if (!$app->getPlugins()->has('DatabaseBackup')) {
-            $app->addPlugin(DatabaseBackup::class);
+            $plugin = new DatabaseBackup();
+            $plugin->bootstrap($app);
+            $app->addPlugin($plugin);
         }
 
         parent::bootstrap($app);
