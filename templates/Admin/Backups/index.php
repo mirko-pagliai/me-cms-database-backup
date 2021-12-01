@@ -13,7 +13,7 @@ declare(strict_types=1);
  * @license     https://opensource.org/licenses/mit-license.php MIT License
  */
 $this->extend('MeCms./Admin/common/index');
-$this->assign('title', __d('me_cms_database_backup', 'Database backups'));
+$this->assign('title', __d('me_cms/database_backup', 'Database backups'));
 
 $this->append('actions', $this->Html->button(
     I18N_ADD,
@@ -21,7 +21,7 @@ $this->append('actions', $this->Html->button(
     ['class' => 'btn-success', 'icon' => 'plus']
 ));
 $this->append('actions', $this->Form->postButton(
-    __d('me_cms_database_backup', 'Delete all'),
+    __d('me_cms/database_backup', 'Delete all'),
     ['action' => 'delete-all'],
     ['class' => 'btn-danger', 'icon' => 'trash']
 ));
@@ -31,9 +31,9 @@ $this->append('actions', $this->Form->postButton(
     <thead>
         <tr>
             <th><?= I18N_FILENAME ?></th>
-            <th class="text-nowrap text-center"><?= __d('me_cms_database_backup', 'Extension') ?></th>
-            <th class="text-nowrap text-center"><?= __d('me_cms_database_backup', 'Compression') ?></th>
-            <th class="text-nowrap text-center"><?= __d('me_cms_database_backup', 'Size') ?></th>
+            <th class="text-nowrap text-center"><?= __d('me_cms/database_backup', 'Extension') ?></th>
+            <th class="text-nowrap text-center"><?= __d('me_cms/database_backup', 'Compression') ?></th>
+            <th class="text-nowrap text-center"><?= __d('me_cms/database_backup', 'Size') ?></th>
             <th class="text-nowrap text-center"><?= I18N_DATE ?></th>
         </tr>
     </thead>
@@ -51,14 +51,14 @@ $this->append('actions', $this->Form->postButton(
                             ['action' => 'download', $backup->get('slug')],
                             ['icon' => 'download']
                         ),
-                        $this->Form->postLink(__d('me_cms_database_backup', 'Restore'), ['action' => 'restore', $backup->get('slug')], [
+                        $this->Form->postLink(__d('me_cms/database_backup', 'Restore'), ['action' => 'restore', $backup->get('slug')], [
                             'icon' => 'upload',
-                            'confirm' => __d('me_cms_database_backup', 'This will overwrite the current database and ' .
+                            'confirm' => __d('me_cms/database_backup', 'This will overwrite the current database and ' .
                                 'some data may be lost. Are you sure?'),
                         ]),
                         $this->Form->postLink(__d('me_cms', 'Send'), ['action' => 'send', $backup->get('slug')], [
                             'icon' => 'envelope',
-                            'confirm' => __d('me_cms_database_backup', 'The backup file will be sent by mail. Are you sure?'),
+                            'confirm' => __d('me_cms/database_backup', 'The backup file will be sent by mail. Are you sure?'),
                         ]),
                         $this->Form->postLink(
                             I18N_DELETE,

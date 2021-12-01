@@ -55,9 +55,9 @@ class MenuHelper extends Helper
         }
 
         $params = ['controller' => 'Backups', 'plugin' => 'MeCms/DatabaseBackup', 'prefix' => ADMIN_PREFIX];
-        $links[] = [__d('me_cms_database_backup', 'List backups'), ['action' => 'index'] + $params];
-        $links[] = [__d('me_cms_database_backup', 'Add backup'), ['action' => 'add'] + $params];
+        $links[] = [__d('me_cms/database_backup', 'List backups'), ['action' => 'index'] + $params];
+        $links[] = [__d('me_cms/database_backup', 'Add backup'), ['action' => 'add'] + $params];
 
-        return [$links, __d('me_cms_database_backup', 'Backups'), ['icon' => 'database'], ['Backups']];
+        return [$links, __d('me_cms/database_backup', 'Backups'), ['icon' => 'database'], ['Backups']];
     }
 }
