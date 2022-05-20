@@ -1,5 +1,8 @@
 # 1.x branch
 ## 1.0 branch
+### 1.0.3-RC3
+* updated for PHP 8.1 Requires at least PHP 7.4.
+
 ### 1.0.2-RC2
 * little fixes.
 
