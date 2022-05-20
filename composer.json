@@ -13,11 +13,11 @@
     "require": {
         "php": ">=7.4",
         "mirko-pagliai/cakephp-database-backup": "^2.9.1",
-        "mirko-pagliai/me-cms": "^2.30.6-RC3"
+        "mirko-pagliai/me-cms": "dev-develop"
     },
     "require-dev": {
         "cakephp/cakephp-codesniffer": "^4.0",
-        "phpunit/phpunit": "^8.5.14|^9.0|^9.5"
+        "phpunit/phpunit": "^9.1|^9.5"
     },
     "autoload": {
         "psr-4": {
