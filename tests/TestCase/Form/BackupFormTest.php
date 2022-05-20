@@ -28,12 +28,12 @@ class BackupFormTest extends TestCase
     /**
      * @var \DatabaseBackup\Utility\BackupExport&\PHPUnit\Framework\MockObject\MockObject
      */
-    protected $BackupExport;
+    protected BackupExport $BackupExport;
 
     /**
      * @var \MeCms\DatabaseBackup\Form\BackupForm
      */
-    protected $Form;
+    protected BackupForm $Form;
 
     /**
      * Called before every test method
@@ -43,7 +43,7 @@ class BackupFormTest extends TestCase
     {
         parent::setUp();
 
-        if (!$this->BackupExport) {
+        if (empty($this->BackupExport)) {
             $this->BackupExport = $this->getMockBuilder(BackupExport::class)
                 ->setMethods(['export', 'filename'])
                 ->getMock();
@@ -51,7 +51,7 @@ class BackupFormTest extends TestCase
             $this->BackupExport->method('filename')->will($this->returnSelf());
         }
 
-        $this->Form = $this->Form ?: new BackupForm();
+        $this->Form ??= new BackupForm();
     }
 
     /**
@@ -107,8 +107,6 @@ class BackupFormTest extends TestCase
      */
     public function testGetBackupExportInstance(): void
     {
-        $this->assertEmpty($this->getProperty($this->Form, 'BackupExport'));
-
         $instance = $this->invokeMethod($this->Form, 'getBackupExportInstance');
         $this->assertInstanceOf(BackupExport::class, $instance);
         $this->assertEquals($instance, $this->getProperty($this->Form, 'BackupExport'));
@@ -124,16 +122,14 @@ class BackupFormTest extends TestCase
             ->setMethods(['getBackupExportInstance'])
             ->getMock();
 
-        $BackupForm->method('getBackupExportInstance')
-            ->will($this->returnCallback(function () {
-                $this->BackupExport->method('export')->will($this->returnValue('test.sql'));
+        $BackupForm->method('getBackupExportInstance')->will($this->returnCallback(function () {
+            $this->BackupExport->method('export')->will($this->returnValue('test.sql'));
 
-                return $this->BackupExport;
-            }));
+            return $this->BackupExport;
+        }));
         $this->assertTrue($BackupForm->execute(['filename' => 'test.sql']));
 
-        $BackupForm->method('getBackupExportInstance')
-            ->will($this->throwException(new Exception()));
+        $BackupForm->method('getBackupExportInstance')->willThrowException(new Exception());
         $this->assertFalse($BackupForm->execute(['filename' => 'test.sql']));
     }
 }

@@ -6,6 +6,7 @@
     xmlns="https://getpsalm.org/schema/config"
     xsi:schemaLocation="https://getpsalm.org/schema/config vendor/vimeo/psalm/config.xsd"
     autoloader="tests/bootstrap.php"
+    errorBaseline="psalm-baseline.xml"
 >
     <projectFiles>
         <directory name="config" />
@@ -31,24 +32,8 @@
             </errorLevel>
         </InvalidScope>
 
-        <TooManyTemplateParams>
-            <errorLevel type="suppress">
-                <file name="src/Controller/Admin/BackupsController.php" />
-            </errorLevel>
-        </TooManyTemplateParams>
-
-        <UndefinedGlobalVariable>
-            <errorLevel type="suppress">
-                <directory name="templates" />
-            </errorLevel>
-        </UndefinedGlobalVariable>
-
-        <UndefinedMagicPropertyAssignment>
-            <errorLevel type="suppress">
-                <file name="tests/TestCase/Controller/Admin/BackupsControllerTest.php" />
-            </errorLevel>
-        </UndefinedMagicPropertyAssignment>
-
+        <RedundantPropertyInitializationCheck errorLevel="suppress" />
         <UndefinedConstant errorLevel="suppress" />
+        <UndefinedGlobalVariable errorLevel="suppress" />
     </issueHandlers>
 </psalm>
