@@ -32,12 +32,12 @@ class BackupsController extends AppController
     /**
      * @var \DatabaseBackup\Utility\BackupManager
      */
-    public $BackupManager;
+    public BackupManager $BackupManager;
 
     /**
      * @var \DatabaseBackup\Utility\BackupImport
      */
-    public $BackupImport;
+    public BackupImport $BackupImport;
 
     /**
      * Check if the provided user is authorized for the request
@@ -59,8 +59,8 @@ class BackupsController extends AppController
     {
         parent::initialize();
 
-        $this->BackupManager = $this->BackupManager ?: new BackupManager();
-        $this->BackupImport = $this->BackupImport ?: new BackupImport();
+        $this->BackupManager ??= new BackupManager();
+        $this->BackupImport ??= new BackupImport();
     }
 
     /**
@@ -80,9 +80,7 @@ class BackupsController extends AppController
      */
     public function index(): void
     {
-        $backups = $this->BackupManager->index()->map(function (Entity $backup): Entity {
-            return $backup->set('slug', urlencode($backup->get('filename')));
-        });
+        $backups = $this->BackupManager->index()->map(fn(Entity $backup): Entity => $backup->set('slug', urlencode($backup->get('filename'))));
 
         $this->set(compact('backups'));
     }

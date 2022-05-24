@@ -18,7 +18,7 @@ use Cake\Core\Configure;
 //Sets directories to be created and must be writable
 $writableDirs = Configure::read('WRITABLE_DIRS', []);
 if (!in_array(getConfigOrFail('DatabaseBackup.target'), $writableDirs)) {
-    Configure::write('WRITABLE_DIRS', array_merge($writableDirs, [getConfigOrFail('DatabaseBackup.target')]));
+    Configure::write('WRITABLE_DIRS', [...$writableDirs, getConfigOrFail('DatabaseBackup.target')]);
 }
 
 if (!getConfig('DatabaseBackup.mailSender')) {

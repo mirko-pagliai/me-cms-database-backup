@@ -28,15 +28,11 @@ use Tools\Filesystem;
 
 /**
  * BackupsControllerTest class
+ * @property \MeCms\DatabaseBackup\Controller\Admin\BackupsController $_controller
  */
 class BackupsControllerTest extends ControllerTestCase
 {
     use EmailTrait;
-
-    /**
-     * @var \MeCms\DatabaseBackup\Controller\Admin\BackupsController
-     */
-    protected $_controller;
 
     /**
      * Internal method to create a backup file
@@ -45,10 +41,7 @@ class BackupsControllerTest extends ControllerTestCase
      */
     protected function createSingleBackup(string $extension = 'sql'): string
     {
-        $file = getConfigOrFail('DatabaseBackup.target') . DS . 'backup.' . $extension;
-        Filesystem::instance()->createFile($file);
-
-        return $file;
+        return Filesystem::instance()->createFile(getConfigOrFail('DatabaseBackup.target') . DS . 'backup.' . $extension);
     }
 
     /**

@@ -40,7 +40,6 @@ define('CACHE', TMP . 'cache' . DS);
 define('LOGS', TMP . 'log' . DS);
 define('SESSIONS', TMP . 'sessions' . DS);
 define('UPLOADED', WWW_ROOT . 'files' . DS);
-define('LOGIN_RECORDS', TMP . 'login' . DS);
 
 foreach ([
     TMP,

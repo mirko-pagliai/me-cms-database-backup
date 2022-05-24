@@ -19,9 +19,9 @@ use Cake\Routing\RouteBuilder;
 /** @var \Cake\Routing\RouteBuilder $routes */
 $routes->setRouteClass(DashedRoute::class);
 
-$routes->plugin('MeCms/DatabaseBackup', ['path' => '/me-cms-database-backup'], function (RouteBuilder $routes) {
+$routes->plugin('MeCms/DatabaseBackup', ['path' => '/me-cms-database-backup'], function (RouteBuilder $routes): void {
     //Admin routes
-    $routes->prefix(ADMIN_PREFIX, function (RouteBuilder $routes) {
+    $routes->prefix(ADMIN_PREFIX, function (RouteBuilder $routes): void {
         $routes->fallbacks('DashedRoute');
     });
 });

@@ -31,7 +31,7 @@ class BackupForm extends Form
     /**
      * @var \DatabaseBackup\Utility\BackupExport
      */
-    protected $BackupExport;
+    protected BackupExport $BackupExport;
 
     /**
      * Returns the default validator object
@@ -62,9 +62,7 @@ class BackupForm extends Form
      */
     protected function getBackupExportInstance(): BackupExport
     {
-        $this->BackupExport = $this->BackupExport ?: new BackupExport();
-
-        return $this->BackupExport;
+        return $this->BackupExport ??= new BackupExport();
     }
 
     /**
