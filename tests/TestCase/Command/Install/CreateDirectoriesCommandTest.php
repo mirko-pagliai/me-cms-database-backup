@@ -1,4 +1,5 @@
 <?php
+/** @noinspection PhpUnhandledExceptionInspection */
 declare(strict_types=1);
 
 /**
@@ -12,7 +13,7 @@ declare(strict_types=1);
  * @link        https://github.com/mirko-pagliai/me-cms-database-backup
  * @license     https://opensource.org/licenses/mit-license.php MIT License
  */
-namespace MeCms\DatabaseBackup\Test\TestCase\Controller\Admin;
+namespace MeCms\DatabaseBackup\Test\TestCase\Command\Install;
 
 use MeCms\TestSuite\TestCase;
 use MeTools\TestSuite\ConsoleIntegrationTestTrait;
@@ -31,7 +32,10 @@ class CreateDirectoriesCommandTest extends TestCase
      */
     public function testExecute(): void
     {
-        @mkdir(getConfigOrFail('DatabaseBackup.target'), 0755, true);
+        if (!file_exists(getConfigOrFail('DatabaseBackup.target'))) {
+            mkdir(getConfigOrFail('DatabaseBackup.target'), 0755, true);
+        }
+
         $this->exec('me_tools.create_directories -v');
         $this->assertOutputContains('File or directory `' . Filesystem::instance()->rtr(getConfigOrFail('DatabaseBackup.target')) . '` already exists');
     }

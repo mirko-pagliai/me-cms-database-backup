@@ -1,4 +1,5 @@
 <?php
+/** @noinspection PhpUnhandledExceptionInspection */
 declare(strict_types=1);
 
 /**
@@ -45,10 +46,10 @@ class BackupFormTest extends TestCase
 
         if (empty($this->BackupExport)) {
             $this->BackupExport = $this->getMockBuilder(BackupExport::class)
-                ->setMethods(['export', 'filename'])
+                ->onlyMethods(['export', 'filename'])
                 ->getMock();
 
-            $this->BackupExport->method('filename')->will($this->returnSelf());
+            $this->BackupExport->method('filename')->willReturnSelf();
         }
 
         $this->Form ??= new BackupForm();
@@ -119,14 +120,14 @@ class BackupFormTest extends TestCase
     public function testExecute(): void
     {
         $BackupForm = $this->getMockBuilder(BackupForm::class)
-            ->setMethods(['getBackupExportInstance'])
+            ->onlyMethods(['getBackupExportInstance'])
             ->getMock();
 
-        $BackupForm->method('getBackupExportInstance')->will($this->returnCallback(function () {
-            $this->BackupExport->method('export')->will($this->returnValue('test.sql'));
+        $BackupForm->method('getBackupExportInstance')->willReturnCallback(function () {
+            $this->BackupExport->method('export')->willReturn('test.sql');
 
             return $this->BackupExport;
-        }));
+        });
         $this->assertTrue($BackupForm->execute(['filename' => 'test.sql']));
 
         $BackupForm->method('getBackupExportInstance')->willThrowException(new Exception());

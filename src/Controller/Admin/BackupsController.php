@@ -54,6 +54,7 @@ class BackupsController extends AppController
     /**
      * Initialization hook method
      * @return void
+     * @throws \Exception
      */
     public function initialize(): void
     {
@@ -156,6 +157,7 @@ class BackupsController extends AppController
      * Restores a backup file
      * @param string $filename Backup filename
      * @return \Cake\Http\Response|null
+     * @throws \Tools\Exception\NotReadableException
      */
     public function restore(string $filename): ?Response
     {
