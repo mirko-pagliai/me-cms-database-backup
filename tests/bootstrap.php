@@ -17,7 +17,7 @@ use Cake\Cache\Cache;
 use Cake\Core\Configure;
 use Cake\Datasource\ConnectionManager;
 use Cake\Log\Log;
-use Cake\Mailer\Email;
+use Cake\Mailer\Mailer;
 use Cake\Mailer\TransportFactory;
 
 ini_set('intl.default_locale', 'en_US');
@@ -109,6 +109,6 @@ Log::setConfig('error', [
 ]);
 
 TransportFactory::setConfig('debug', ['className' => 'Debug']);
-Email::setConfig('default', ['transport' => 'debug', 'log' => true]);
+Mailer::setConfig('default', ['transport' => 'debug', 'log' => true]);
 
 $_SERVER['PHP_SELF'] = '/';

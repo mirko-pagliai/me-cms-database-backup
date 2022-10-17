@@ -1,4 +1,5 @@
 <?php
+/** @noinspection PhpUnhandledExceptionInspection */
 declare(strict_types=1);
 
 /**
@@ -75,7 +76,7 @@ class BackupsControllerTest extends ControllerTestCase
         parent::controllerSpy($event, $controller);
 
         $this->_controller->BackupImport = $this->getMockBuilder(BackupImport::class)
-            ->setMethods(['import'])
+            ->onlyMethods(['import'])
             ->getMock();
     }
 
