@@ -1,5 +1,8 @@
 # 1.x branch
 ## 1.0 branch
+### 1.0.5
+* updated for me-cms 2.30.10.
+
 ### 1.0.4-RC4
 * small and numerous improvements of descriptions, tags and code suggested by
   PhpStorm.
