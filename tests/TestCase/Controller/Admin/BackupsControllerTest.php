@@ -1,4 +1,5 @@
 <?php
+/** @noinspection PhpDocMissingThrowsInspection */
 /** @noinspection PhpUnhandledExceptionInspection */
 declare(strict_types=1);
 
@@ -24,7 +25,7 @@ use Cake\ORM\Entity;
 use Cake\TestSuite\EmailTrait;
 use DatabaseBackup\Utility\BackupImport;
 use MeCms\DatabaseBackup\Form\BackupForm;
-use MeCms\TestSuite\ControllerTestCase;
+use MeCms\TestSuite\Admin\ControllerTestCase;
 use Tools\Filesystem;
 
 /**
@@ -75,27 +76,23 @@ class BackupsControllerTest extends ControllerTestCase
     {
         parent::controllerSpy($event, $controller);
 
-        $this->_controller->BackupImport = $this->getMockBuilder(BackupImport::class)
-            ->onlyMethods(['import'])
-            ->getMock();
+        $this->_controller->BackupImport = $this->createPartialMock(BackupImport::class, ['import']);
     }
 
     /**
-     * Tests for `isAuthorized()` method
      * @test
+     * @uses \MeCms\DatabaseBackup\Controller\Admin\BackupsController::isAuthorized()
      */
     public function testIsAuthorized(): void
     {
-        $this->assertGroupsAreAuthorized([
-            'admin' => true,
-            'manager' => false,
-            'user' => false,
-        ]);
+        $this->assertOnlyAdminIsAuthorized('index');
+        $this->assertOnlyAdminIsAuthorized('add');
+        $this->assertOnlyAdminIsAuthorized('delete');
     }
 
     /**
-     * Tests for `index()` method
      * @test
+     * @uses \MeCms\DatabaseBackup\Controller\Admin\BackupsController::index()
      */
     public function testIndex(): void
     {
@@ -107,8 +104,8 @@ class BackupsControllerTest extends ControllerTestCase
     }
 
     /**
-     * Tests for `add()` method
      * @test
+     * @uses \MeCms\DatabaseBackup\Controller\Admin\BackupsController::add()
      */
     public function testAdd(): void
     {
@@ -133,8 +130,8 @@ class BackupsControllerTest extends ControllerTestCase
     }
 
     /**
-     * Tests for `delete()` method
      * @test
+     * @uses \MeCms\DatabaseBackup\Controller\Admin\BackupsController::delete()
      */
     public function testDelete(): void
     {
@@ -146,8 +143,8 @@ class BackupsControllerTest extends ControllerTestCase
     }
 
     /**
-     * Tests for `deleteAll()` method
      * @test
+     * @uses \MeCms\DatabaseBackup\Controller\Admin\BackupsController::deleteAll()
      */
     public function testDeleteAll(): void
     {
@@ -159,8 +156,8 @@ class BackupsControllerTest extends ControllerTestCase
     }
 
     /**
-     * Tests for `download()` method
      * @test
+     * @uses \MeCms\DatabaseBackup\Controller\Admin\BackupsController::download()
      */
     public function testDownload(): void
     {
@@ -170,9 +167,9 @@ class BackupsControllerTest extends ControllerTestCase
     }
 
     /**
-     * Tests for `restore()` method
      * @requires OS Linux
      * @test
+     * @uses \MeCms\DatabaseBackup\Controller\Admin\BackupsController::restore()
      */
     public function testRestore(): void
     {
@@ -185,9 +182,9 @@ class BackupsControllerTest extends ControllerTestCase
     }
 
     /**
-     * Tests for `send()` method
      * @requires OS Linux
      * @test
+     * @uses \MeCms\DatabaseBackup\Controller\Admin\BackupsController::send()
      */
     public function testSend(): void
     {

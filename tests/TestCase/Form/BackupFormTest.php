@@ -20,12 +20,15 @@ use DatabaseBackup\Utility\BackupExport;
 use Exception;
 use MeCms\DatabaseBackup\Form\BackupForm;
 use MeCms\TestSuite\TestCase;
+use Tools\TestSuite\ReflectionTrait;
 
 /**
  * BackupFormTest class
  */
 class BackupFormTest extends TestCase
 {
+    use ReflectionTrait;
+
     /**
      * @var \DatabaseBackup\Utility\BackupExport&\PHPUnit\Framework\MockObject\MockObject
      */
@@ -45,10 +48,7 @@ class BackupFormTest extends TestCase
         parent::setUp();
 
         if (empty($this->BackupExport)) {
-            $this->BackupExport = $this->getMockBuilder(BackupExport::class)
-                ->onlyMethods(['export', 'filename'])
-                ->getMock();
-
+            $this->BackupExport = $this->createPartialMock(BackupExport::class, ['export', 'filename']);
             $this->BackupExport->method('filename')->willReturnSelf();
         }
 
@@ -103,8 +103,8 @@ class BackupFormTest extends TestCase
     }
 
     /**
-     * Tests for `getBackupExportInstance()` method
      * @test
+     * @uses \MeCms\DatabaseBackup\Form\BackupForm::getBackupExportInstance()
      */
     public function testGetBackupExportInstance(): void
     {
@@ -114,15 +114,12 @@ class BackupFormTest extends TestCase
     }
 
     /**
-     * Tests for `_execute()` method
      * @test
+     * @uses \MeCms\DatabaseBackup\Form\BackupForm::_execute()
      */
     public function testExecute(): void
     {
-        $BackupForm = $this->getMockBuilder(BackupForm::class)
-            ->onlyMethods(['getBackupExportInstance'])
-            ->getMock();
-
+        $BackupForm = $this->createPartialMock(BackupForm::class, ['getBackupExportInstance']);
         $BackupForm->method('getBackupExportInstance')->willReturnCallback(function () {
             $this->BackupExport->method('export')->willReturn('test.sql');
 

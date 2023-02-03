@@ -1,4 +1,8 @@
 # 1.x branch
+## 1.1 branch
+### 1.1.0
+* updated for me-cms 2.31.0.
+
 ## 1.0 branch
 ### 1.0.5
 * updated for me-cms 2.30.10.

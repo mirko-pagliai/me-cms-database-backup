@@ -24,17 +24,17 @@ use MeCms\TestSuite\MenuHelperTestCase;
 class MenuHelperTest extends MenuHelperTestCase
 {
     /**
-     * Tests for `backups()` method
      * @test
+     * @uses \MeCms\DatabaseBackup\View\Helper\MenuHelper::backups()
      */
     public function testBackups(): void
     {
-        $this->assertEmpty($this->Helper->backups());
+        foreach (['user', 'manager'] as $name) {
+            $this->setIdentity(['group' => compact('name')]);
+            $this->assertEmpty($this->Helper->backups());
+        }
 
-        $this->writeAuthOnSession(['group' => ['name' => 'manager']]);
-        $this->assertEmpty($this->Helper->backups());
-
-        $this->writeAuthOnSession(['group' => ['name' => 'admin']]);
+        $this->setIdentity(['group' => ['name' => 'admin']]);
         [$links,,, $handledControllers] = $this->Helper->backups();
         $this->assertNotEmpty($links);
         $this->assertEquals(['Backups'], $handledControllers);
