@@ -15,17 +15,14 @@ declare(strict_types=1);
  */
 namespace MeCms\DatabaseBackup\Test\TestCase\Command\Install;
 
-use MeCms\TestSuite\TestCase;
-use MeTools\TestSuite\ConsoleIntegrationTestTrait;
+use MeTools\TestSuite\CommandTestCase;
 use Tools\Filesystem;
 
 /**
  * CreateDirectoriesCommandTest class
  */
-class CreateDirectoriesCommandTest extends TestCase
+class CreateDirectoriesCommandTest extends CommandTestCase
 {
-    use ConsoleIntegrationTestTrait;
-
     /**
      * Tests for `execute()` method
      * @test

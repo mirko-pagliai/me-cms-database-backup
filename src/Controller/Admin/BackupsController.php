@@ -22,6 +22,7 @@ use DatabaseBackup\Utility\BackupImport;
 use DatabaseBackup\Utility\BackupManager;
 use MeCms\Controller\Admin\AppController;
 use MeCms\DatabaseBackup\Form\BackupForm;
+use MeCms\Model\Entity\User;
 
 /**
  * Backups controller
@@ -40,15 +41,14 @@ class BackupsController extends AppController
     public BackupImport $BackupImport;
 
     /**
-     * Check if the provided user is authorized for the request
-     * @param array|\ArrayAccess|null $user The user to check the authorization
-     *  of. If empty the user in the session will be used
+     * Checks if the provided user is authorized for the request
+     * @param \MeCms\Model\Entity\User $User User entity
      * @return bool `true` if the user is authorized, otherwise `false`
      */
-    public function isAuthorized($user = null): bool
+    public function isAuthorized(User $User): bool
     {
         //Only admins can access this controller
-        return $this->Auth->isGroup('admin');
+        return $User->get('group')->get('name') === 'admin';
     }
 
     /**
@@ -65,8 +65,7 @@ class BackupsController extends AppController
     }
 
     /**
-     * Internal method to get a filename. It decodes the filename and adds the
-     *  backup target directory
+     * Internal method to get a filename. It decodes the filename and adds the backup target directory
      * @param string $filename Filename
      * @return string
      */
