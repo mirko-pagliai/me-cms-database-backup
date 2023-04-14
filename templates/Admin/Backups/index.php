@@ -11,7 +11,11 @@ declare(strict_types=1);
  * @copyright   Copyright (c) Mirko Pagliai
  * @link        https://github.com/mirko-pagliai/me-cms-database-backup
  * @license     https://opensource.org/licenses/mit-license.php MIT License
+ *
+ * @var \Cake\ORM\Entity[] $backups
+ * @var \MeCms\View\View\Admin\AppView $this
  */
+
 $this->extend('MeCms./Admin/common/index');
 $this->assign('title', __d('me_cms/database_backup', 'Database backups'));
 
@@ -41,10 +45,9 @@ $this->append('actions', $this->Form->postButton(
         <?php foreach ($backups as $backup) : ?>
             <tr>
                 <td>
-                    <strong>
-                        <?= $this->Html->link($backup->get('filename'), ['action' => 'download', $backup->get('slug')]) ?>
-                    </strong>
                     <?php
+                    echo $this->Html->link($backup->get('filename'), ['action' => 'download', $backup->get('slug')], ['class' => 'fw-bold']);
+
                     $actions = [
                         $this->Html->link(
                             I18N_DOWNLOAD,
@@ -70,16 +73,16 @@ $this->append('actions', $this->Form->postButton(
                     echo $this->Html->ul($actions, ['class' => 'actions']);
                     ?>
                 </td>
-                <td class="text-nowrap text-center">
-                    <?= $backup->get('extension') ?>
+                <td class="text-nowrap text-center align-middle">
+                    <code><?= $backup->get('extension') ?></code>
                 </td>
-                <td class="text-nowrap text-center">
-                    <?= $backup->get('compression') ?>
+                <td class="text-nowrap text-center align-middle">
+                    <code><?= $backup->get('compression') ?></code>
                 </td>
-                <td class="text-nowrap text-center">
+                <td class="text-nowrap text-center align-middle">
                     <?= $this->Number->toReadableSize($backup->get('size')) ?>
                 </td>
-                <td class="text-nowrap text-center">
+                <td class="text-nowrap text-center align-middle">
                     <?= $backup->get('datetime')->i18nFormat() ?>
                 </td>
             </tr>
