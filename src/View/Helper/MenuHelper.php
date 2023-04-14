@@ -15,7 +15,7 @@ declare(strict_types=1);
 
 namespace MeCms\DatabaseBackup\View\Helper;
 
-use Cake\View\Helper;
+use MeCms\View\Helper\AbstractMenuHelper;
 
 /**
  * Menu Helper.
@@ -30,20 +30,13 @@ use Cake\View\Helper;
  *  - the controllers handled by this menu, as an array.
  *
  * @see \MeCms\View\Helper\MenuBuilderHelper::generate() for more information
- * @see \MeCms\View\Helper\MenuHelper for examples
- * @property \MeCms\View\Helper\IdentityHelper $Identity
  */
-class MenuHelper extends Helper
+class MenuHelper extends AbstractMenuHelper
 {
-    /**
-     * Helpers
-     * @var array
-     */
-    public $helpers = ['MeCms.Identity'];
-
     /**
      * Internal function to generate the menu for "backups" actions
      * @return array Array with links, title, title options and handled controllers
+     * @throws \ErrorException
      */
     public function backups(): array
     {

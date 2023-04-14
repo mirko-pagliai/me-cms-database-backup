@@ -124,7 +124,6 @@ jobs:
           if: success() || failure()
           run: vendor/bin/phpstan.phar analyse --error-format=github
 
-
   testsuite-windows:
     runs-on: windows-2019
     name: Windows - PHP 8.0
