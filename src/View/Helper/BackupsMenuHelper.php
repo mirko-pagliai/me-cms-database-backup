@@ -41,6 +41,10 @@ class BackupsMenuHelper extends AbstractMenuHelper
         return $links;
     }
 
+    /**
+     * Gets the options for this menu
+     * @return array
+     */
     public function getOptions(): array
     {
         return ['icon' => 'database'];
