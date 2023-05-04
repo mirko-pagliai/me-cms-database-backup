@@ -18,27 +18,16 @@ namespace MeCms\DatabaseBackup\View\Helper;
 use MeCms\View\Helper\AbstractMenuHelper;
 
 /**
- * Menu Helper.
- *
- * This helper contains methods that will be called automatically to generate menus for the admin layout.
- * You don't need to call these methods manually, use instead the `MenuBuilderHelper` helper.
- *
- * Each method must return an array with four values:
- *  - the menu links, as an array of parameters;
- *  - the menu title;
- *  - the options for the menu title;
- *  - the controllers handled by this menu, as an array.
- *
- * @see \MeCms\View\Helper\MenuBuilderHelper::generate() for more information
+ * BackupsMenuHelper
  */
-class MenuHelper extends AbstractMenuHelper
+class BackupsMenuHelper extends AbstractMenuHelper
 {
     /**
-     * Internal function to generate the menu for "backups" actions
-     * @return array Array with links, title, title options and handled controllers
+     * Gets the links for this menu. Each links is an array of parameters
+     * @return array[]
      * @throws \ErrorException
      */
-    public function backups(): array
+    public function getLinks(): array
     {
         //Only admins can access this controller
         if (!$this->Identity->isGroup('admin')) {
@@ -49,6 +38,24 @@ class MenuHelper extends AbstractMenuHelper
         $links[] = [__d('me_cms/database_backup', 'List backups'), ['action' => 'index'] + $params];
         $links[] = [__d('me_cms/database_backup', 'Add backup'), ['action' => 'add'] + $params];
 
-        return [$links, __d('me_cms/database_backup', 'Backups'), ['icon' => 'database'], ['Backups']];
+        return $links;
+    }
+
+    /**
+     * Gets the options for this menu
+     * @return array
+     */
+    public function getOptions(): array
+    {
+        return ['icon' => 'database'];
+    }
+
+    /**
+     * Gets the title for this menu
+     * @return string
+     */
+    public function getTitle(): string
+    {
+        return __d('me_cms/database_backup', 'Backups');
     }
 }

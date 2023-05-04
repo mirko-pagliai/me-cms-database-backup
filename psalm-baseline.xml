@@ -5,4 +5,10 @@
       <code>$this-&gt;BackupManager-&gt;index()</code>
     </TooManyTemplateParams>
   </file>
+  <file src="templates/Admin/Backups/add.php">
+    <UndefinedMagicMethod occurrences="2">
+      <code>code</code>
+      <code>code</code>
+    </UndefinedMagicMethod>
+  </file>
 </files>

@@ -13,30 +13,31 @@ declare(strict_types=1);
  * @link        https://github.com/mirko-pagliai/me-cms-database-backup
  * @license     https://opensource.org/licenses/mit-license.php MIT License
  */
+
 namespace MeCms\DatabaseBackup\Test\TestCase\Command\Install;
 
-use Cake\Core\Configure;
+use MeTools\Core\Configure;
 use MeTools\TestSuite\CommandTestCase;
 use Tools\Filesystem;
 
 /**
- * CreateDirectoriesCommandTest class
+ * SetPermissionsCommandTest class
  */
-class CreateDirectoriesCommandTest extends CommandTestCase
+class SetPermissionsCommandTest extends CommandTestCase
 {
     /**
+     * @uses \MeTools\Command\Install\SetPermissionsCommand::execute()
      * @test
-     * @uses \MeTools\Command\Install\CreateDirectoriesCommand::execute()
      */
     public function testExecute(): void
     {
-        $this->exec('me_cms.create_directories -v');
+        $this->exec('me_cms.set_permissions -v');
         $this->assertExitSuccess();
         $this->assertErrorEmpty();
         $expectedDirs = Configure::read('MeCms/DatabaseBackup.WritableDirs');
         $this->assertIsArrayNotEmpty($expectedDirs);
         foreach ($expectedDirs as $expectedDir) {
-            $this->assertOutputContains('File or directory `' . Filesystem::instance()->rtr($expectedDir) . '` already exists');
+            $this->assertOutputContains('Set permissions on `' . Filesystem::instance()->rtr($expectedDir) . '`');
         }
     }
 }

@@ -18,25 +18,25 @@ namespace MeCms\DatabaseBackup\Test\TestCase\View\Helper;
 use MeCms\TestSuite\MenuHelperTestCase;
 
 /**
- * MenuHelperTest class
- * @property \MeCms\DatabaseBackup\View\Helper\MenuHelper $Helper
+ * BackupsMenuHelperTest class
  */
-class MenuHelperTest extends MenuHelperTestCase
+class BackupsMenuHelperTest extends MenuHelperTestCase
 {
     /**
      * @test
-     * @uses \MeCms\DatabaseBackup\View\Helper\MenuHelper::backups()
+     * @uses \MeCms\DatabaseBackup\View\Helper\BackupsMenuHelper::getLinks()
      */
-    public function testBackups(): void
+    public function testGetLinks(): void
     {
-        foreach (['user', 'manager'] as $name) {
-            $this->setIdentity(['group' => compact('name')]);
-            $this->assertEmpty($this->Helper->backups());
-        }
+        $this->assertEmpty($this->getLinksAsHtml());
+
+        $this->setIdentity(['group' => ['name' => 'manager']]);
+        $this->assertEmpty($this->getLinksAsHtml());
 
         $this->setIdentity(['group' => ['name' => 'admin']]);
-        [$links,,, $handledControllers] = $this->Helper->backups();
-        $this->assertNotEmpty($links);
-        $this->assertEquals(['Backups'], $handledControllers);
+        $this->assertSame([
+            '<a href="/me-cms-database-backup/admin/backups" title="List backups">List backups</a>',
+            '<a href="/me-cms-database-backup/admin/backups/add" title="Add backup">Add backup</a>',
+        ], $this->getLinksAsHtml());
     }
 }

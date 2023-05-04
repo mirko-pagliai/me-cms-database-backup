@@ -1,22 +1,7 @@
 parameters:
 	ignoreErrors:
 		-
-			message: "#^Variable \\$backup might not be defined\\.$#"
-			count: 1
+			message: "#^Call to an undefined method MeTools\\\\View\\\\Helper\\\\HtmlHelper\\:\\:code\\(\\)\\.$#"
+			count: 2
 			path: templates/Admin/Backups/add.php
-
-		-
-			message: "#^Variable \\$this might not be defined\\.$#"
-			count: 8
-			path: templates/Admin/Backups/add.php
-
-		-
-			message: "#^Variable \\$backups might not be defined\\.$#"
-			count: 1
-			path: templates/Admin/Backups/index.php
-
-		-
-			message: "#^Variable \\$this might not be defined\\.$#"
-			count: 13
-			path: templates/Admin/Backups/index.php
 
