@@ -13,7 +13,7 @@
     "require": {
         "php": ">=7.4",
         "mirko-pagliai/cakephp-database-backup": "^2.9.1",
-        "mirko-pagliai/me-cms": "~2.31.9",
+        "mirko-pagliai/me-cms": "~2.32",
         "mirko-pagliai/php-tools": "^1.6.1"
     },
     "require-dev": {

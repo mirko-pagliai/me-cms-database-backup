@@ -14,6 +14,9 @@ declare(strict_types=1);
  */
 
 use Cake\Core\Configure;
+use MeCms\DatabaseBackup\View\Helper\BackupsMenuHelper;
+
+Configure::write('MeCms/DatabaseBackup.MenuHelpers', [BackupsMenuHelper::class]);
 
 //Sets directories to be created and must be writable
 $writableDirs = Configure::read('WRITABLE_DIRS', []);

@@ -1,4 +1,9 @@
 # 1.x branch
+## 1.2 branch
+### 1.2.0
+* the old `MenuHelper` class has been removed and replaced with `BackupsMenuHelper`. The helper is set in the bootstrap,
+  with the `MeCms/DatabaseBackup.MenuHelpers`, as requested by `me-cms` 2.32.0.
+
 ## 1.1 branch
 ### 1.1.1
 * updated for me-cms 2.31.9.
