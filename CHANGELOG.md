@@ -2,7 +2,9 @@
 ## 1.2 branch
 ### 1.2.0
 * the old `MenuHelper` class has been removed and replaced with `BackupsMenuHelper`. The helper is set in the bootstrap,
-  with the `MeCms/DatabaseBackup.MenuHelpers`, as requested by `me-cms` 2.32.0.
+  with the `MeCms/DatabaseBackup.MenuHelpers`, as requested by `me-cms` 2.32.0;
+* as for `me-cms` 2.32.0 and `me-tools` 2.24.0, it uses `Configure::readFromPlugins()` with `WritableDirs` key instead of
+  the old `WRITABLE_DIRS` key.
 
 ## 1.1 branch
 ### 1.1.1

@@ -16,13 +16,11 @@ declare(strict_types=1);
 use Cake\Core\Configure;
 use MeCms\DatabaseBackup\View\Helper\BackupsMenuHelper;
 
+//Sets the menu helpers that will be used
 Configure::write('MeCms/DatabaseBackup.MenuHelpers', [BackupsMenuHelper::class]);
 
-//Sets directories to be created and must be writable
-$writableDirs = Configure::read('WRITABLE_DIRS', []);
-if (!in_array(getConfigOrFail('DatabaseBackup.target'), $writableDirs)) {
-    Configure::write('WRITABLE_DIRS', [...$writableDirs, getConfigOrFail('DatabaseBackup.target')]);
-}
+//Sets the directories to be created and which must be writable
+Configure::write('MeCms/DatabaseBackup.WritableDirs', [getConfigOrFail('DatabaseBackup.target')]);
 
 if (!getConfig('DatabaseBackup.mailSender')) {
     Configure::write('DatabaseBackup.mailSender', getConfigOrFail('MeCms.email.webmaster'));
